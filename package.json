@@ -1,0 +1,19 @@
+{
+  "name": "hack_on",
+  "version": "1.0.0",
+  "description": "Project done for the hackathon HackOn2.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rvk7895/hack_on.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rvk7895/hack_on/issues"
+  },
+  "homepage": "https://github.com/rvk7895/hack_on#readme"
+}
