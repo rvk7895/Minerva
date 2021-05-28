@@ -21,6 +21,7 @@ client.on('message', (msg) => {
         msg.reply('pong');
 });
 
+<<<<<<< HEAD
 const token = 'ODQ3NzQyMzM2MzIyNTAyNjg3.YLCfkw.crAN79Vp5p687Hjnn1NGYRpO8Bo'
 
 
@@ -66,3 +67,6 @@ client.on('message', async message => {
         });
 	}
 });
+=======
+client.login('ODQ3NzQyMzM2MzIyNTAyNjg3.YLCfkw.crAN79Vp5p687Hjnn1NGYRpO8Bo');
+>>>>>>> 77273ada9638e64155833b76ca217790dd4b8016
