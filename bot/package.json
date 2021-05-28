@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/rvk7895/hack_on/issues"
   },
-  "homepage": "https://github.com/rvk7895/hack_on#readme"
+  "homepage": "https://github.com/rvk7895/hack_on#readme",
+  "dependencies": {
+    "discord.js": "^12.5.3"
+  }
 }
