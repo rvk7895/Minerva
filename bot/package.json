@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/rvk7895/hack_on#readme",
   "dependencies": {
-    "discord.js": "^12.5.3"
+    "@discordjs/opus": "^0.5.0",
+    "@google-cloud/text-to-speech": "^3.2.1",
+    "discord.js": "^12.5.3",
+    "ffmpeg-static": "^4.3.0"
   }
 }
