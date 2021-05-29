@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const fs = require('fs');
-const { tts, stt } = require('./functions');
+const { tts, stt, wavToPcm } = require('./functions');
 const axios = require('axios');
 
 const database = {}
@@ -27,8 +27,9 @@ const conversation = async (count, message) => {
 
     writer.on('finish', () => {
         stt(filename);
-        tts(filename);
-        const stream = fs.createReadStream(`${filename}.pcm`);
+        //text = api call to dialog flow or whatever
+        tts(filename, "Hello There");
+        const stream = fs.createReadStream(`${filename}-converted2.wav`);
 
         const dispatcher = connect.play(stream, {
             type: 'converted'

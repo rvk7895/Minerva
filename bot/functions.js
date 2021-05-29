@@ -6,16 +6,17 @@ const wavConverter = require('wav-converter');
 
 const speechConfig = sdk.SpeechConfig.fromSubscription(process.env.KEY, process.env.LOCATION);
 
-const tts = (path) => {
-    const audioConfig = AudioConfig.fromAudioFileOutput(`${path}.wav`);
+const tts = (path,text) => {
+    const audioConfig = AudioConfig.fromAudioFileOutput(`${path}-converted2.wav`);
     const synthesizer = new SpeechSynthesizer(speechConfig, audioConfig);
 
     synthesizer.speakTextAsync(
-        `${path}.wav`,
+        text,
         result => {
             synthesizer.close();
             if (result) {
-                return fs.createReadStream(`${path}.wav`);
+                fs.createReadStream(`${path}-converted2.wav`);
+                wavToPcm(path);
             }
         },
         error => {
@@ -27,7 +28,7 @@ const tts = (path) => {
 
 const stt = (path) => {
     pcmToWav(path);
-    const audioConfig = AudioConfig.fromWavFileInput(fs.readFileSync(`${path}.wav`));
+    const audioConfig = AudioConfig.fromWavFileInput(fs.readFileSync(`${path}-converted1.wav`));
     const recognizer = new sdk.SpeechRecognizer(speechConfig, audioConfig);
 
     recognizer.recognizeOnceAsync(result => {
@@ -43,11 +44,18 @@ const pcmToWav = (path) => {
         sampleRate: 48000,
         byteRate: 16
     });
-    fs.writeFileSync(`${path}.wav`, wavData);
+    fs.writeFileSync(`${path}-converted1.wav`, wavData);
+}
+
+const wavToPcm = (path) => {
+    const wavData = fs.readFileSync(`${path}-converted2.wav`);
+    const pcmData = wavConverter.decodeWav(wavData);
+    fs.writeFileSync(`${path}-converted3.pcm`,pcmData);
 }
 
 
 module.exports = {
     tts,
     stt,
+    wavToPcm,
 }

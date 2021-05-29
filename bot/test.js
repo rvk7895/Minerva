@@ -1,10 +1,3 @@
-const axios = require('axios');
+const ffmpeg = require('ffmpeg-static');
 
-const call = () =>
-axios.post('http://127.0.0.1:5000/',{
-    text:"Hello There"
-}).then(response => {
-    console.log(response.data);
-})
-
-call();
+console.log(ffmpeg);
