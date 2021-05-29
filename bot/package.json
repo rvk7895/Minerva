@@ -18,19 +18,15 @@
   "homepage": "https://github.com/rvk7895/hack_on#readme",
   "dependencies": {
     "@discordjs/opus": "^0.5.0",
-<<<<<<< HEAD
-    "@google-cloud/text-to-speech": "^3.2.1",
-    "discord.js": "^12.5.3",
-    "ffmpeg-static": "^4.3.0"
-=======
     "discord.js": "^12.5.3",
     "dotenv": "^10.0.0",
     "ffmpeg-static": "^4.3.0",
+    "kitty": "0.0.1",
     "microsoft-cognitiveservices-speech-sdk": "^1.17.0",
-    "sodium": "^3.0.2"
+    "sodium": "^3.0.2",
+    "wav-converter": "^1.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
->>>>>>> 77273ada9638e64155833b76ca217790dd4b8016
   }
 }
