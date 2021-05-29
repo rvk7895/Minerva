@@ -1,14 +1,10 @@
-const fs = require('fs');
-const wavConverter = require('wav-converter');
+const axios = require('axios');
 
-const test = path => {
-    const pcmData = fs.readFileSync(`${path}.pcm`);
-    const wavData = wavConverter.encodeWav(pcmData, {
-        numChannels: 2,
-        sampleRate: 48000,
-        byteRate: 16
-    });
-    fs.writeFileSync(`${path}.wav`, wavData);
-}
+const call = () =>
+axios.post('http://127.0.0.1:5000/',{
+    text:"Hello There"
+}).then(response => {
+    console.log(response.data);
+})
 
-test('./audio_files/recorded-429572531951763457-1622277953502');
+call();

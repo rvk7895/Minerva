@@ -1,18 +1,13 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const { Readable } = require('stream');
 const fs = require('fs');
-const util = require('util');
 const { tts, stt } = require('./functions');
-const { spawn } = require('child_process');
+const axios = require('axios');
+
+const database = {}
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}`);
-});
-
-client.on('message', (msg) => {
-    if (msg.content == 'ping')
-        msg.reply('pong');
 });
 
 const token = 'ODQ3NzQyMzM2MzIyNTAyNjg3.YLCfkw.crAN79Vp5p687Hjnn1NGYRpO8Bo'
@@ -32,7 +27,6 @@ const conversation = async (count, message) => {
 
     writer.on('finish', () => {
         stt(filename);
-        // api call
         tts(filename);
         const stream = fs.createReadStream(`${filename}.pcm`);
 
@@ -51,28 +45,42 @@ const conversation = async (count, message) => {
 
 client.on('message', async message => {
     // Join the same voice channel of the author of the message
-    if (message.member.voice.channel) {
-        let count = 0;
+    if (message.author.bot) return;
+    // console.log(message.author.id);
+    let depressionScore
+    try {
+        const response = await axios.post('http://127.0.0.1:5000/', {
+            text: message.content
+        })
+        depressionScore = Number(response.data);
+    } catch (err) {
+        console.log(err)
+    }
+
+    if (depressionScore < 0.5) return;
+    else {
+        console.log(depressionScore);
+        if (message.author.id in database) {
+            database[message.author.id] += 1
+        } else {
+            database[message.author.id] = 1
+        }
+
+        if (database[message.author.id] > 2) {
+            let count = 1;
+            message.reply("Come talk to me in any VC, send ~here when you are in a VC")
+        } else {
+            message.reply("We are here for you");
+        }
+
+    }
+});
+
+client.on('message', message => {
+    if (message.author.bot) return;
+
+    if (message.content === '~here') {
+        let count = 1;
         conversation(count, message);
     }
-});
-
-client.on('message', async message => {
-    // Join the same voice channel of the author of the message
-    if (message.content === 'play' && message.member.voice.channel) {
-
-        if (!fs.existsSync(`recorded-${message.author.id}.pcm`)) return console.log('Record audio first');
-
-        const connection = await message.member.voice.channel.join();
-        const stream = fs.createReadStream(`recorded-${message.author.id}.pcm`);
-
-        const dispatcher = connection.play(stream, {
-            type: 'converted'
-        });
-
-        dispatcher.on('finish', () => {
-            message.member.voice.channel.leave();
-            return console.log('Finished playing audio')
-        });
-    }
-});
+})
