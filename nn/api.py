@@ -14,7 +14,7 @@ ann = load_model('model.h5')
 
 MAX_LEN = 118
 
-
+@app.route('/',methods=['POST'])
 def hello_world():
     X = [request.json['text']]
     X = tokenizer.texts_to_sequences(X)

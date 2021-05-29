@@ -1,2 +1,4 @@
 node_modules/
 testing_files/
+audio_files/
+test.js
