@@ -31,8 +31,8 @@ const stt = (path) => {
     const recognizer = new sdk.SpeechRecognizer(speechConfig, audioConfig);
 
     recognizer.recognizeOnceAsync(result => {
-        console.log(`RECOGNIZED: Text=${result.text}`);
         recognizer.close();
+        return(`RECOGNIZED: Text=${result.text}`);
     });
 }
 

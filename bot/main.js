@@ -2,10 +2,12 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const fs = require('fs');
 const { tts, stt } = require('./functions');
+const { evaluateMessage, getKarma } = require('./moderator');
 const axios = require('axios');
 const { request, gql, GraphQLClient } = require('graphql-request');
 
 const database = {}
+const users = {};
 
 const gqlClient = new GraphQLClient('https://api-ap-northeast-1.graphcms.com/v2/ckp9xwhpbx9xy01xvf3r42llu/master', { headers: {} });
 
@@ -21,7 +23,8 @@ const conversation = async (count, message) => {
     const writer = audio.pipe(fs.createWriteStream(`${filename}.pcm`));
 
     writer.on('finish', () => {
-        stt(filename);
+        const response = stt(filename);
+        console.log(response);
         tts(filename);
         const stream = fs.createReadStream(`${filename}.pcm`);
 
@@ -31,7 +34,7 @@ const conversation = async (count, message) => {
         console.log('Finished writing audio')
         dispatcher.on('finish', () => {
             count += 1;
-            if (count < 5)
+            if (count < 7)
                 conversation(count, message)
             return console.log('Finished playing audio')
         });
@@ -45,8 +48,18 @@ client.on('ready', () => {
 client.on('message', async message => {
     // Join the same voice channel of the author of the message
     if (message.author.bot) return;
+    let userid = message.author.id;
 
+    if (!users[userid]) {
+    users[userid] = [];
+    }
 
+    await evaluateMessage(message, users);
+
+    if(message.content.startsWith('~karma')){
+        const karma = getKarma(users);
+        message.channel.send(karma ? karma : 'No karma yet!');
+    }
 
     if (message.content === '~here') {
         let count = 1;
