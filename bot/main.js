@@ -1,14 +1,14 @@
-const Discord = require('discord.js');
-const client = new Discord.Client();
 const fs = require('fs');
-const { tts, stt } = require('./functions');
-const { evaluateMessage, getKarma } = require('./moderator');
+const util = require('util');
+const Discord = require('discord.js');
 const axios = require('axios');
-const { request, gql, GraphQLClient } = require('graphql-request');
+const { gql, GraphQLClient } = require('graphql-request');
+const textToSpeech = require('@google-cloud/text-to-speech');
+const { stt } = require('./functions');
+const { evaluateMessage, getKarma } = require('./moderator');
 
-const database = {}
-const users = {};
-
+const client = new Discord.Client();
+const gttsClient = new textToSpeech.TextToSpeechClient({ keyFilename: './gtts_cred.json' });
 const gqlClient = new GraphQLClient('https://api-ap-northeast-1.graphcms.com/v2/ckp9xwhpbx9xy01xvf3r42llu/master', { headers: {} });
 
 const conversation = async (count, message) => {
@@ -22,16 +22,21 @@ const conversation = async (count, message) => {
     let filename = `./audio_files/recorded-${message.author.id}-${Date.now()}`;
     const writer = audio.pipe(fs.createWriteStream(`${filename}.pcm`));
 
-    writer.on('finish', () => {
-        const response = stt(filename);
-        console.log(response);
-        tts(filename);
-        const stream = fs.createReadStream(`${filename}.pcm`);
+    writer.on('finish', async () => {
+        stt(filename);
 
-        const dispatcher = connect.play(stream, {
-            type: 'converted'
-        });
-        console.log('Finished writing audio')
+        const text = "Hello World";
+        const request = {
+            input: { text: text },
+            voice: { languageCode: 'en-US', ssmlGender: 'NEUTRAL' },
+            audioConfig: { audioEncoding: 'MP3' },
+        };
+
+        const [response] = await gttsClient.synthesizeSpeech(request);
+        const writeFile = util.promisify(fs.writeFile);
+        await writeFile(`${filename}-tts.mp3`, response.audioContent, 'binary');
+
+        const dispatcher = connect.play(`${filename}-tts.mp3`);
         dispatcher.on('finish', () => {
             count += 1;
             if (count < 7)
