@@ -10,6 +10,7 @@ const { evaluateMessage, getKarma } = require('./moderator');
 const client = new Discord.Client();
 const gttsClient = new textToSpeech.TextToSpeechClient({ keyFilename: './gtts_cred.json' });
 const gqlClient = new GraphQLClient('https://api-ap-northeast-1.graphcms.com/v2/ckp9xwhpbx9xy01xvf3r42llu/master', { headers: {} });
+let users = {}
 
 const conversation = async (count, message) => {
     const connect = await message.member.voice.channel.join();
