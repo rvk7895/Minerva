@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "minerva-315113",
+  "private_key_id": "c8122e2a9afcced30e5701c088dc6fdaee8e5c1b",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEugIBADANBgkqhkiG9w0BAQEFAASCBKQwggSgAgEAAoIBAQCNB/o6eEEokm0v\nTr6BtulUM12RMKmPh+B1fCZKX/fsXigM0t4VUKvZCzVCFFA446gleLVwUDA40SzG\ncgSGBTe+SWabPxTYcgbgmcU/K6GK/LCvgUJs/fKNGBWjTl9X+CKrp6/CWlYnxGeo\nH1I3zXfswibdlaO0olvSlasm1ABFRZFLS+xJn2nfbtLC6zPhl0+MKdd8EfMr+yGv\n3qS8CdNL961696uG8sLTjFjkZE5hgqH02pXh7Ah//GWOVnZJiXC3Voq6Z3YssXPG\ntq+LcwCtkgH4D4+qUhCv95BAO0qrkQcy3hjyiSz1qqN2Id4/SP3wRP+FN5cXeFfE\n3o/+/RexAgMBAAECgf90PR8BEhyiVA2p8D0UrK2juLJl+LXIlzVpn+nvYyn0p6Za\n63IgH12Ehrhevl9ghEMSn2rsJyuXqNA+v7r6u1I2hEkNq/CCdXk1pYftiQichaka\n/m7BZo2DvVYYQ4BSATKSSKOUjOB15muJJkedtrwhZ+SgvbUwLKGB79ohJpsSfAr8\nIxxThCxJv2H0L5qKFM94CyyY/wrIFyw7VHB5mycuerW3FRJRtX2NSLLuOC7i4EnO\nZeCR/0Xr8w9h97sD/lfz6u0vqfGvtysDTa2s+2w6ptyGTB2frmJGriN868HBg5zz\nKRBY3lfnPAJg3Y4tXYoN1vaxCWh5Tz3+jHzDox0CgYEAweZvvz/0S/fnd2rCR3Mz\nn5+Pj1eVxbnZmVERgzozQvSTbU3ZVwA+d1GwC0zixe1b4FndTvA3MAkINN+C9p+0\ngRCJINmilXqJKQvs2yR6ZwNahGjUvW1SRINj5Oq9kMboLSigYsWvbXsrA3U/dL3s\nJBgSoGWZ4eEVsO0Jkhd9q7MCgYEAujLlxCJi7Zxm/3+CB3TWhgFnweedX3WcINnx\n7ZLE0OcA5PHrobA4xbsob02YcnyShopiXNJQVYeraoRT98wjXOk3HVDjDSl4i1zL\nat9/J1x6HEiq4OStSTFaJHT2wZCdfA4n2yu4JuIjhcgDQDPPPgl7JXSLY03Hspts\nEO/W7QsCgYAvSPDLZN9Af24U8xX5sqBONu0debBujYoBF4H7zH+fvmENcMSlsMuK\n8YLK3q8WsXGMXp3XmED9F9bGfhND7WJpbwzh0/EQHtfACMZ0Eos+/9RdIetvXm+H\ngbskohIkcj1Adf3W2HqVakntB/S3lXE2xCAWuXAzY16UzNlepRfifQKBgDI5tHy5\ngdHyVF4q+NomDA/NpT1KysqLIPhDkdyxsGFhTn5zO0o8DLRZjcioN6z6KVQdU/cR\nzBWmKPjshPHcoNVZG0LPJM/SFfARsdU8QEJP0ah7eYx8YrnRlC0tV7pS1gg2kU2v\nd1cVvNtDXo0c7JQhXpR14XuB6ZImFnpjF6iNAoGAa9IS+dwiURaz+nIFk3NC9MLu\nkye0v19OYiSnq7vCkmfPmuKNYtWcnstZYpxDDQ6yoQI5bDquB5dYwWiQL0XtSHuq\njiEFEOOWpsnxgFm78ZPmwm6WwY2p0+rnGDBnnM1u1mnoSm2qKqglwDMHGLEcG7vf\nuID9ZTGy41Tl7/Z7n6E=\n-----END PRIVATE KEY-----\n",
+  "client_email": "dhruv-kapur@minerva-315113.iam.gserviceaccount.com",
+  "client_id": "106102646312355475029",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/dhruv-kapur%40minerva-315113.iam.gserviceaccount.com"
+}

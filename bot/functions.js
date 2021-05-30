@@ -3,6 +3,7 @@ const sdk = require("microsoft-cognitiveservices-speech-sdk");
 const { AudioConfig } = require("microsoft-cognitiveservices-speech-sdk");
 require('dotenv').config()
 const wavConverter = require('wav-converter');
+const util = require('util');
 
 
 const speechConfig = sdk.SpeechConfig.fromSubscription(process.env.KEY, process.env.LOCATION);
@@ -13,10 +14,12 @@ const stt = (path) => {
     const audioConfig = AudioConfig.fromWavFileInput(fs.readFileSync(`${path}.wav`));
     const recognizer = new sdk.SpeechRecognizer(speechConfig, audioConfig);
 
-    recognizer.recognizeOnceAsync(result => {
-        recognizer.close();
-        return(`RECOGNIZED: Text=${result.text}`);
+    const sttPromise = new Promise((resolve) => {
+        recognizer.recognizeOnceAsync(result => {
+            resolve(result.text);
+        });
     });
+    return sttPromise;
 }
 
 const pcmToWav = (path) => {

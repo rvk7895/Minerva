@@ -18,6 +18,8 @@
   "homepage": "https://github.com/rvk7895/hack_on#readme",
   "dependencies": {
     "@discordjs/opus": "^0.5.0",
+    "@google-cloud/dialogflow": "^3.5.0",
+    "@google-cloud/speech": "^4.5.1",
     "@google-cloud/text-to-speech": "^3.2.1",
     "axios": "^0.21.1",
     "discord.js": "^12.5.3",
