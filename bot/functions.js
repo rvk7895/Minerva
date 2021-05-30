@@ -3,11 +3,8 @@ const sdk = require("microsoft-cognitiveservices-speech-sdk");
 const { AudioConfig } = require("microsoft-cognitiveservices-speech-sdk");
 require('dotenv').config()
 const wavConverter = require('wav-converter');
-const util = require('util');
-
 
 const speechConfig = sdk.SpeechConfig.fromSubscription(process.env.KEY, process.env.LOCATION);
-
 
 const stt = (path) => {
     pcmToWav(path);

@@ -8,16 +8,18 @@ const { stt } = require('./functions');
 const { evaluateMessage, getKarma } = require('./moderator');
 
 const { questions, returnResponseObj } = require('./dialogflow');
-const { ConsoleLoggingListener } = require('microsoft-cognitiveservices-speech-sdk/distrib/lib/src/common.browser/ConsoleLoggingListener');
 
 const client = new Discord.Client();
 const gttsClient = new textToSpeech.TextToSpeechClient({ keyFilename: './gtts_cred.json' });
 const gqlClient = new GraphQLClient('https://api-ap-northeast-1.graphcms.com/v2/ckp9xwhpbx9xy01xvf3r42llu/master', { headers: {} });
 let users = {}
 
-const conversation = async (count, message) => {
+const conversation = async (count, message, score) => {
     if (count >= 7) {
         // Handle score
+        console.log(`Final Score: ${score}`);
+
+        // DM resources or whatever
         message.member.voice.channel.leave();
     }
 
@@ -44,19 +46,15 @@ const conversation = async (count, message) => {
             const transcript = await stt(filename);
             console.log(transcript);
 
-            const responses = await returnResponseObj(transcript);
+            const responses = await returnResponseObj(transcript || "Fine");
             const result = responses[0].queryResult;
             let val = 0;
-            const response_str = result.fulfillmentText;
+            const responseStr = result.fulfillmentText;
 
             if (result.intent)
                 val += Number(String(result.intent.displayName).split('-')[1]) || 0;
 
-            console.log(`  ${val}`);
-
-            const responseObj = { 'val': val, 'str': response_str };
-
-            const DFtext = responseObj.str;
+            const DFtext = responseStr;
             const DFrequest = {
                 input: { text: DFtext },
                 voice: { languageCode: 'en-US', ssmlGender: 'NEUTRAL' },
@@ -69,7 +67,7 @@ const conversation = async (count, message) => {
 
             const DFdispatcher = connect.play(`${filename}-DFtts.mp3`);
             DFdispatcher.on('finish', () => {
-                conversation(count + 1, message);
+                conversation(count + 1, message, score + val);
             })
         });
 
@@ -99,8 +97,8 @@ client.on('message', async message => {
 
     if (message.content === '~here') {
         let count = 0;
-        conversation(count, message);
-        console.log("Convo done");
+        let score = 0;
+        conversation(count, message, score);
     }
     else {
         let depressionScore = 0;

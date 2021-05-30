@@ -3,7 +3,7 @@ const uuid = require('uuid');
 
 const questions = [
   "Hello there , how are you?",
-  "Okay, well I just felt like something didn't seem okay, so I am going to ask you a few questions. Think about your response and then answer it. The first question is In the past two weeks, how often have you felt down, depressed, or hopeless?",
+  "Well I just felt like something didn't seem alright, so I am going to ask you a few questions. Think about your response and then answer it. The first question is In the past two weeks, how often have you felt down, depressed, or hopeless?",
   "How well can you sleep off lately?",
   "How is your energy levels through the day?",
   "This question deals with the topic of suicide, Have you had any thoughts of suicide?",
