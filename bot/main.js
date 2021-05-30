@@ -130,7 +130,7 @@ client.on('message', async message => {
             console.log(err)
         }
 
-        if (depressionScore < 0.5) return;
+        if (depressionScore < 0.7) return;
         else {
             let messageCount = 0;
             // Check if user is in DB, else create user
@@ -188,7 +188,7 @@ client.on('message', async message => {
                 console.log(err);
             }
 
-            if (messageCount > 2) {
+            if (messageCount > 3) {
                 message.reply("Come talk to me in any VC, send `~here` when you are in a VC")
             } else {
                 message.reply("We are here for you");
