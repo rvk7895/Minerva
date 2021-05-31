@@ -1,3 +1,4 @@
+require('dotenv').config();
 const fs = require('fs');
 const util = require('util');
 const Discord = require('discord.js');
@@ -10,8 +11,8 @@ const { evaluateMessage, getKarma } = require('./moderator');
 const { questions, returnResponseObj } = require('./dialogflow');
 
 const client = new Discord.Client();
-const gttsClient = new textToSpeech.TextToSpeechClient({ keyFilename: './gtts_cred.json' });
-const gqlClient = new GraphQLClient('https://api-ap-northeast-1.graphcms.com/v2/ckp9xwhpbx9xy01xvf3r42llu/master', { headers: {} });
+const gttsClient = new textToSpeech.TextToSpeechClient({ keyFilename: './GC_cred.json' });
+const gqlClient = new GraphQLClient(process.env.GRAPH_CMS_ENDPOINT, { headers: {} });
 let users = {}
 
 const conversation = async (count, message, score) => {
@@ -179,6 +180,6 @@ client.on('message', async message => {
     }
 });
 
-const token = 'ODQ3NzQyMzM2MzIyNTAyNjg3.YLCfkw.crAN79Vp5p687Hjnn1NGYRpO8Bo'
+const token = process.env.DISCORD_TOKEN;
 
 client.login(token);

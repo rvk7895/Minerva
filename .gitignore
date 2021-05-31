@@ -3,3 +3,5 @@ data.csv
 .vscode
 audio_files
 __pycache__
+GC_cred.json
+.env

@@ -21,7 +21,7 @@ async function returnResponseObj(response, projectId = 'minerva-315113') {
 
   // Create a new session
   const sessionClient = new dialogflow.SessionsClient({
-    keyFilename: "minerva-315113-e4b12fb64eff.json"
+    keyFilename: "GC_cred.json"
   });
   const sessionPath = sessionClient.projectAgentSessionPath(projectId, sessionId);
   // The text query request.
