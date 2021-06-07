@@ -18,7 +18,26 @@ let users = {}
 const conversation = async (count, message, score) => {
     if (count >= 7) {
         // Handle score
+        let text;
+        if(score <= 10)
+            text = `All seems fine, nothing to be worried about as per your score of ${score}/18.\nBut still if you want to help yourself with some resources, you can have a look at them.\n`
+        else if(score <= 14)
+            text = `Situations might start to get worse for you since you have the score of ${score}/18, you might want to talk to people who are close to you regarding the troubles you might be facing.\nHere are some resources that you can have a look at.\n`
+        else
+            text = `You have got a score of ${score}/18 and its pretty high, you might want to consult a professional regarding the issues you might have/face.\nFew resources are given below\n`
         console.log(`Final Score: ${score}`);
+        const embed = new Discord.MessageEmbed()
+                        .setColor('#0099ff')
+                        .setTitle('Awareness Resources For Mental Health')
+                        .setDescription(text)
+                        .setURL('http://iacp.in')
+                        .addFields(
+                            {name: 'Source of the Questionairre', value: 'https://www.everydayhealth.com/depression/5-questions-doctors-ask-when-screening-for-depression.aspx'},
+                            {name: 'Articles regarding Mental Health', value: 'https://www.healthline.com/health/mental-health-resources'},
+                        )
+                        .setFooter('Minerva: Mental Health Monitoring Bot');
+        
+        message.author.send(embed);
 
         // DM resources or whatever
         message.member.voice.channel.leave();
@@ -112,7 +131,7 @@ client.on('message', async message => {
             console.log(err)
         }
 
-        if (depressionScore < 0.5) return;
+        if (depressionScore < 0.7) return;
         else {
             let messageCount = 0;
             // Check if user is in DB, else create user
@@ -170,7 +189,7 @@ client.on('message', async message => {
                 console.log(err);
             }
 
-            if (messageCount > 2) {
+            if (messageCount > 3) {
                 message.reply("Come talk to me in any VC, send `~here` when you are in a VC")
             } else {
                 message.reply("We are here for you");
