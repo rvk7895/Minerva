@@ -1,5 +1,5 @@
 # Minerva
-A discord bot which looks for depressive behavior in the server chats, and try to help a potentially serious case with a voice conversation styled question/answer session by providing links to relevant resources and helplines. It also moderates acts of hate-speech like **Racism**,**Feminism** and other forms in the server.
+A discord bot which looks for depressive behavior in the server chats, and try to help a potentially serious case with a voice conversation styled question/answer session by providing links to relevant resources and helplines. It also moderates acts of hate-speech and verbal abuse in the server.
 
 ## Introduction
 CoVID-19 has confined almost all of us to our homes and has affected our lives in ways that were beyond imaginable. The challenges that we face are stressful and overwhelming and cause strong emotions among both children and adults.  Studies show a significant increase in adults' cases of depression and anxiety since the CoVID-19 invasion. The below image([Source](https://www.kff.org/coronavirus-covid-19/issue-brief/the-implications-of-covid-19-for-mental-health-and-substance-use/)) gives an idea of this.
